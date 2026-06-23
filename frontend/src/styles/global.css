@@ -1,0 +1,195 @@
+/* ═══════════════════════════════════════════════════════════════
+   InstaFood Global Styles — CSS Custom Properties & Reset
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Color Palette ─────────────────────────────────────────── */
+  --color-primary:       hsl(25, 95%, 53%);    /* Vibrant orange */
+  --color-primary-dark:  hsl(25, 95%, 42%);
+  --color-primary-light: hsl(25, 95%, 68%);
+  --color-primary-soft:  hsl(25, 95%, 96%);
+
+  --color-accent:        hsl(142, 71%, 45%);   /* Fresh green */
+  --color-accent-soft:   hsl(142, 71%, 94%);
+
+  --color-bg:            hsl(30, 20%, 98%);    /* Warm off-white */
+  --color-surface:       hsl(0, 0%, 100%);
+  --color-surface-2:     hsl(30, 15%, 96%);
+  --color-surface-3:     hsl(30, 10%, 92%);
+
+  --color-text:          hsl(20, 15%, 15%);    /* Warm near-black */
+  --color-text-2:        hsl(20, 10%, 40%);
+  --color-text-3:        hsl(20, 8%, 60%);
+  --color-text-inv:      hsl(0, 0%, 100%);
+
+  --color-border:        hsl(30, 12%, 88%);
+  --color-border-focus:  var(--color-primary);
+
+  --color-error:         hsl(0, 72%, 51%);
+  --color-error-soft:    hsl(0, 72%, 95%);
+  --color-success:       hsl(142, 71%, 45%);
+
+  /* ── Shadow System ─────────────────────────────────────────── */
+  --shadow-sm:  0 1px 3px hsla(20, 20%, 10%, 0.06), 0 1px 2px hsla(20, 20%, 10%, 0.04);
+  --shadow-md:  0 4px 16px hsla(20, 20%, 10%, 0.10), 0 2px 6px hsla(20, 20%, 10%, 0.06);
+  --shadow-lg:  0 12px 40px hsla(20, 20%, 10%, 0.14), 0 4px 12px hsla(20, 20%, 10%, 0.08);
+  --shadow-xl:  0 24px 64px hsla(20, 20%, 10%, 0.18);
+  --shadow-card-hover: 0 20px 48px hsla(25, 80%, 50%, 0.20), 0 4px 16px hsla(20, 20%, 10%, 0.08);
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif:  'Playfair Display', Georgia, serif;
+
+  --text-xs:    0.75rem;
+  --text-sm:    0.875rem;
+  --text-base:  1rem;
+  --text-lg:    1.125rem;
+  --text-xl:    1.25rem;
+  --text-2xl:   1.5rem;
+  --text-3xl:   1.875rem;
+  --text-4xl:   2.25rem;
+
+  /* ── Spacing ───────────────────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* ── Layout ────────────────────────────────────────────────── */
+  --navbar-height: 68px;
+  --sidebar-width: 260px;
+  --content-max:   1280px;
+  --content-pad:   var(--space-6);
+
+  /* ── Radii ─────────────────────────────────────────────────── */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ───────────────────────────────────────────── */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow:   0.4s ease;
+}
+
+/* ── CSS Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* ── Utility Classes ────────────────────────────────────────── */
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface-2); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* ── Page layout ────────────────────────────────────────────── */
+.page-layout {
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+}
+
+.page-content {
+  padding: var(--space-8) var(--content-pad);
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* ── Overlay (for sidebar) ──────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: hsla(20, 15%, 10%, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
