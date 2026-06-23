@@ -17,6 +17,11 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
+# Allow Render's auto-assigned hostname in production
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -120,18 +125,22 @@ SIMPLE_JWT = {
 }
 
 # ─── CORS ──────────────────────────────────────────────────────────────────────
-# In development, allow the Vite dev server
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'http://localhost:5174',
-    'http://127.0.0.1:5174',
-]
-
-# Add production origins from env if present
-_prod_origins = os.environ.get('CORS_ALLOWED_ORIGINS_PROD', '')
-if _prod_origins:
-    CORS_ALLOWED_ORIGINS += [o.strip() for o in _prod_origins.split(',') if o.strip()]
+if DEBUG:
+    # In development, allow everything for easy local testing
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    # Production: explicitly whitelist the Vite dev server + Vercel frontend
+    CORS_ALLOWED_ORIGINS = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'http://localhost:5174',
+        'http://127.0.0.1:5174',
+    ]
+    # Add Vercel (or any other) production origin from env
+    # Set CORS_ALLOWED_ORIGINS_PROD=https://your-app.vercel.app on Render dashboard
+    _prod_origins = os.environ.get('CORS_ALLOWED_ORIGINS_PROD', '')
+    if _prod_origins:
+        CORS_ALLOWED_ORIGINS += [o.strip() for o in _prod_origins.split(',') if o.strip()]
 
 CORS_ALLOW_CREDENTIALS = True
 
