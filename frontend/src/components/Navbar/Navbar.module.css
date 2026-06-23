@@ -108,6 +108,28 @@
   color: var(--color-error);
 }
 
+.loginBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  margin-left: var(--space-2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.loginBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
 .userChip {
   display: flex;
   align-items: center;

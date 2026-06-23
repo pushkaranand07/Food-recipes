@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { ProtectedRoute } from './components/shared';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 
@@ -44,8 +43,8 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/* Protected Main App Routes */}
-          <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+          {/* Main App Routes (public — login accessible via navbar) */}
+          <Route element={<AppLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/categories/:categoryId" element={<RecipesListPage />} />
